@@ -2,13 +2,58 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MarkdownFX - A lightweight markdown viewer and editor</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no" />
+
+    <title>VE Markdown - A lightweight markdown viewer and editor</title>
+    <meta name="description" content="Lightweight markdown viewer and editor" />
+    <link rel="icon" href="favicon.ico" />
+
+    <meta itemprop="name" content="VE Markdown" />
+    <meta itemprop="description" content="Lightweight markdown viewer and editor" />
+    <meta itemprop="image" content="icons/icon-192x192.png" />
+
+    <!-- See https://goo.gl/qRE0vM -->
+    <meta name="theme-color" content="#DAE5ED" />
+    <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="VE Markdown" />
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="VE Markdown" />
+    <!-- Homescreen icons -->
+    <link rel="apple-touch-icon" href="icons/icon-48x48.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="icons/icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="96x96" href="icons/icon-96x96.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="icons/icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192x192.png" />
+    <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="icons/icon-144x144.png" />
+    <meta name="msapplication-TileColor" content="#DAE5ED" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- OpenGraph -->
+    <meta property="og:site_name" content="VE Markdown" />
+    <meta property="og:url" content="https://github.com/Khabz/markdown-fx" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="VE Markdown" />
+    <meta property="og:description" content="Lightweight markdown viewer and editor" />
+    <meta property="og:image" content="icons/icon-144x144.png" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@liyasthomas" />
+    <meta name="twitter:creator" content="@liyasthomas" />
+    <meta name="twitter:url" content="https://github.com/Khabz/markdown-fx" />
+    <meta name="twitter:title" content="VE Markdown" />
+    <meta name="twitter:description" content="Lightweight markdown viewer and editor" />
+    <meta name="twitter:image" content="icons/icon-144x144.png" />
 
     <!-- Web Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="index.css" />
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML&delayStartupUntil=configured"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/styles/dracula.min.css" />
@@ -21,51 +66,52 @@
         <header>
             <div class="tools">
                 <div>
-                    <a href="https://github.com/Khabz/markdown-fx">MarkdownVE</a>
-                    <button title="Bold">B</button>
-                    <button title="Italic"><i>I</i></button>
-                    <button title="Strikethrough">
-                        <strike>S</strike>
-                    </button>
-                    <button title="Header 1">H1</button>
-                    <button title="Header 2">H2</button>
-                    <button title="Header 3">H3</button>
-                    <button title="Unordered list">●</button>
-                    <button title="Ordered list">1.</button>
-                    <button title="Check list">Checklist</button>
-                    <button title="Blockquote">””</button>
-                    <button title="Inline code">I&lt;></button>
-                    <button title="Block code">&lt;>B</button>
-                    <button title="Link">A</button>
-                    <button title="Image">I</button>
-                    <button title="Horizontal rule">——</button>
-                    <button title="Table">⚏</button>
+                    <a href="https://github.com/Khabz/markdown-fx">VE Markdown</a>
+                    <button onclick="apply('bold')" title="Bold">B</button>
+                    <button onclick="apply('italic')" title="Italic"><i>I</i></button>
+                    <button onclick="apply('strike')" title="Strikethrough">
+              <strike>S</strike>
+            </button>
+                    <button onclick="apply('h1')" title="Header 1">H1</button>
+                    <button onclick="apply('h2')" title="Header 2">H2</button>
+                    <button onclick="apply('h3')" title="Header 3">H3</button>
+                    <button onclick="apply('ul')" title="Unordered list">●</button>
+                    <button onclick="apply('ol')" title="Ordered list">1.</button>
+                    <button onclick="apply('check')" title="Check list">✔</button>
+                    <button onclick="apply('bq')" title="Blockquote">””</button>
+                    <button onclick="apply('ic')" title="Inline code">I&lt;></button>
+                    <button onclick="apply('bc')" title="Block code">&lt;>B</button>
+                    <button onclick="apply('link')" title="Link">A</button>
+                    <button onclick="apply('image')" title="Image">I</button>
+                    <button onclick="apply('hr')" title="Horizontal rule">——</button>
+                    <button onclick="apply('table')" title="Table">⚏</button>
                 </div>
                 <div>
                     <span>
-                        <label class="file" for="file">
-                          Open
-                          <input
-                            id="file"
-                            type="file"
-                            accept=".txt,.text,.md,.markdown,.markdn,.mdown,.htm,.html,.svg"
-                            onchange="openFile(event)"
-                          />
-                        </label>
-                      </span>
+              <label class="file" for="file">
+                Open
+                <input
+                  id="file"
+                  type="file"
+                  accept=".txt,.text,.md,.markdown,.markdn,.mdown,.htm,.html,.svg"
+                  onchange="openFile(event)"
+                />
+              </label>
+            </span>
                     <button type="button" onclick="download();" id="save" disabled>
-                        Save
-                      </button> 🌗
+              Save
+            </button> 🌗
                     <label class="theme-switch" for="checkbox" title="Night mode">
-                        <input type="checkbox" id="checkbox" />
-                        <div class="slider round"></div>
-                      </label>
+              <input type="checkbox" id="checkbox" />
+              <div class="slider round"></div>
+            </label>
                 </div>
             </div>
         </header>
+        <hr />
         <section class="content">
             <div id="editor">
-                <textarea class="syncscroll" name="sync" id="getm" placeholder="write markdown here ✨" onkeyup="Preview.Update()" onmouseup="mouseUp()" autofocus></textarea>
+                <textarea class="syncscroll" name="sync" id="getm" placeholder="paste markdown here ✨" onkeyup="Preview.Update()" onmouseup="mouseUp()" autofocus></textarea>
             </div>
             <div class="markdown syncscroll" name="sync" id="viewer" style="display: none;"></div>
             <div class="markdown syncscroll" name="sync" id="buffer"></div>
@@ -84,12 +130,11 @@
                 <div style="flex: 1 1 0; text-align: right;">
                     <span id="charcount"></span>
                     <span id="wordcount"></span>
-                    <span class="trigger">❓</span>
                 </div>
-            </div>
             </div>
         </footer>
     </main>
+    <script src="index.js"></script>
 </body>
 
 </html>

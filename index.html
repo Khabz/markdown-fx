@@ -15,7 +15,77 @@
 
 <body>
     <main role="main" class="container">
-
+        <header>
+            <div class="tools">
+                <div>
+                    <a href="https://github.com/Khabz/markdown-fx">MarkdownFX</a>
+                    <button title="Bold">B</button>
+                    <button title="Italic"><i>I</i></button>
+                    <button title="Strikethrough">
+                        <strike>S</strike>
+                    </button>
+                    <button title="Header 1">H1</button>
+                    <button title="Header 2">H2</button>
+                    <button title="Header 3">H3</button>
+                    <button title="Unordered list">●</button>
+                    <button title="Ordered list">1.</button>
+                    <button title="Check list">Checklist</button>
+                    <button title="Blockquote">””</button>
+                    <button title="Inline code">I&lt;></button>
+                    <button title="Block code">&lt;>B</button>
+                    <button title="Link">A</button>
+                    <button title="Image">I</button>
+                    <button title="Horizontal rule">——</button>
+                    <button title="Table">⚏</button>
+                </div>
+                <div>
+                    <span>
+                        <label class="file" for="file">
+                          Open
+                          <input
+                            id="file"
+                            type="file"
+                            accept=".txt,.text,.md,.markdown,.markdn,.mdown,.htm,.html,.svg"
+                            onchange="openFile(event)"
+                          />
+                        </label>
+                      </span>
+                    <button type="button" onclick="download();" id="save" disabled>
+                        Save
+                      </button> 🌗
+                    <label class="theme-switch" for="checkbox" title="Night mode">
+                        <input type="checkbox" id="checkbox" />
+                        <div class="slider round"></div>
+                      </label>
+                </div>
+            </div>
+        </header>
+        <section class="content">
+            <div id="editor">
+                <textarea class="syncscroll" name="sync" id="getm" placeholder="write markdown here ✨" onkeyup="Preview.Update()" onmouseup="mouseUp()" autofocus></textarea>
+            </div>
+            <div class="markdown syncscroll" name="sync" id="viewer" style="display: none;"></div>
+            <div class="markdown syncscroll" name="sync" id="buffer"></div>
+        </section>
+        <footer>
+            <div class="tools">
+                <div style="flex: 1 1 0;">
+                    <span id="lineno"></span>
+                    <span id="colno"></span>
+                </div>
+                <div class="preview">
+                    <button onclick="slide('nill')" title="Hide editor">←</button>
+                    <button onclick="slide('half')" title="Side by side">●</button>
+                    <button onclick="slide('full')" title="Hide viewer">→</button>
+                </div>
+                <div style="flex: 1 1 0; text-align: right;">
+                    <span id="charcount"></span>
+                    <span id="wordcount"></span>
+                    <span class="trigger">❓</span>
+                </div>
+            </div>
+            </div>
+        </footer>
     </main>
 </body>
 
